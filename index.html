@@ -97,14 +97,6 @@
             const addTaskBtn = document.getElementById('addTask');
             const clearCompletedBtn = document.getElementById('clearCompleted');
 
-            // サンプルタスクを追加
-            const sampleTasks = [
-                '<p>Reactコンポーネントをリファクタリング</p>',
-                '<div>新しいAPIエンドポイントをテスト</div>',
-                '<span>TypeScriptの型定義を追加</span>',
-                '<h4>ユーザビリティテストを実施</h4>'
-            ];
-
             // ローカルストレージからタスクを読み込む
             function loadTasks() {
                 const savedTasks = localStorage.getItem('devTodoTasks');
@@ -266,5 +258,3 @@
     </script>
 </body>
 </html>
-
-//なんで公開できないん?
