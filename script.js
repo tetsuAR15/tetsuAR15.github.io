@@ -1,5 +1,6 @@
 document.addEventListener('DOMContentLoaded', function() {
             const tasksContainer = document.getElementById('tasksContainer');
+            console.log('tasksContainer:', tasksContainer); // デバッグ用
             const newTaskInput = document.getElementById('newTask');
             const addTaskBtn = document.getElementById('addTask');
             const clearCompletedBtn = document.getElementById('clearCompleted');
