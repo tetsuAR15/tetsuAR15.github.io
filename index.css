@@ -1,0 +1,31 @@
+.code-editor {
+            background-color: #1e1e1e;
+            color: #d4d4d4;
+            font-family: 'Courier New', monospace;
+            border-radius: 8px;
+            padding: 20px;
+            position: relative;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .line-number {
+            color: #858585;
+            display: inline-block;
+            width: 30px;
+            user-select: none;
+        }
+        .tag {
+            color: #569cd6;
+        }
+        .text {
+            color: #d4d4d4;
+        }
+        .closing-tag {
+            color: #569cd6;
+        }
+        .add-task-animation {
+            transition: all 0.3s ease;
+        }
+        .add-task-animation:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+        }
