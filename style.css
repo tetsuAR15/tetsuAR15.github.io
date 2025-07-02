@@ -29,3 +29,16 @@
             transform: translateY(-2px);
             box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
         }
+        .footer {
+    text-align: center;
+    color: #858585;
+    padding: 16px 0 8px 0;
+    font-size: 0.95em;
+}
+.footer a {
+    color: #569cd6;
+    text-decoration: underline;
+}
+.footer a:hover {
+    color: #7ecfff;
+}

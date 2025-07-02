@@ -30,21 +30,22 @@ document.addEventListener('DOMContentLoaded', function() {
             // タスクをDOMに追加
             function addTaskToDOM(taskText, isCompleted = false, saveToStorage = true, color = null, id = null) {
                 // idが指定されていればそれを使う
-                const taskId = id || (Date.now() + Math.floor(Math.random()*1000));
+                const taskId = id !== null && id !== undefined ? id : (Date.now() + Math.floor(Math.random()*1000));
                 const taskElement = document.createElement('div');
                 const taskColor = color || document.getElementById('taskColor')?.value || '#1e293b';
                 taskElement.className = `flex items-start py-2 px-3 rounded ${isCompleted ? 'bg-gray-800 text-gray-500' : ''}`;
                 taskElement.style.backgroundColor = isCompleted ? '#27272a' : taskColor;
                 taskElement.dataset.id = taskId;
                 taskElement.dataset.color = taskColor;
-                
+
                 const lineNumber = document.createElement('span');
                 lineNumber.className = 'line-number mr-3';
-                lineNumber.textContent = tasksContainer.children.length + 1;
+                // 修正: tasksContainer.children.length ではなく、現在のタスク数+1
+                lineNumber.textContent = tasksContainer.querySelectorAll('div[data-id]').length + 1;
 
                 const taskContent = document.createElement('div');
                 taskContent.className = 'flex-1 flex items-center';
-                
+
                 const checkbox = document.createElement('input');
                 checkbox.type = 'checkbox';
                 checkbox.className = 'mr-3 h-4 w-4';
@@ -58,15 +59,17 @@ document.addEventListener('DOMContentLoaded', function() {
                         taskElement.style.backgroundColor = taskElement.dataset.color;
                     }
                     updateTaskInStorage(taskId, this.checked, taskElement.dataset.color);
-                    highlightHTML(this.nextSibling);
+                    // highlightHTML(this.nextSibling); // 不要
                 });
 
                 // HTMLタグのハイライト
-                const highlightedText = highlightHTML(taskText);
-                
+                // highlightHTMLの戻り値をspanに
+                const highlightedText = document.createElement('span');
+                highlightedText.innerHTML = taskText;
+
                 taskContent.appendChild(checkbox);
                 taskContent.appendChild(highlightedText);
-                
+
                 const deleteBtn = document.createElement('button');
                 deleteBtn.className = 'text-red-400 hover:text-red-300 ml-4';
                 deleteBtn.innerHTML = '&times;';
@@ -78,11 +81,11 @@ document.addEventListener('DOMContentLoaded', function() {
                         updateLineNumbers();
                     }, 300);
                 });
-                
+
                 taskElement.appendChild(lineNumber);
                 taskElement.appendChild(taskContent);
                 taskElement.appendChild(deleteBtn);
-                
+
                 tasksContainer.appendChild(taskElement);
 
                 if (saveToStorage) {
@@ -92,14 +95,11 @@ document.addEventListener('DOMContentLoaded', function() {
                 updateLineNumbers();
             }
 
-            // HTMLタグをシンタックスハイライト
+            // highlightHTMLは不要なので簡略化
             function highlightHTML(htmlString) {
-                if (typeof htmlString === 'string') {
-                    const wrapper = document.createElement('div');
-                    wrapper.innerHTML = htmlString;
-                    return wrapper;
-                }
-                return htmlString;
+                const span = document.createElement('span');
+                span.innerHTML = htmlString;
+                return span;
             }
 
             // ライン番号を更新
