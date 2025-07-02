@@ -149,15 +149,19 @@ document.addEventListener('DOMContentLoaded', function() {
             });
 
             clearCompletedBtn.addEventListener('click', function() {
-                const completedTasks = tasksContainer.querySelectorAll('div[data-id].bg-gray-800');
+                // 修正: 完了タスクをチェックボックスで判定
+                const completedTasks = tasksContainer.querySelectorAll('div[data-id]');
                 completedTasks.forEach(task => {
-                    task.classList.add('opacity-0', 'transform', '-translate-x-2', 'transition-all', 'duration-300');
-                    setTimeout(() => {
-                        const taskId = task.dataset.id;
-                        task.remove();
-                        removeTaskFromStorage(taskId);
-                        updateLineNumbers();
-                    }, 300);
+                    const checkbox = task.querySelector('input[type="checkbox"]');
+                    if (checkbox && checkbox.checked) {
+                        task.classList.add('opacity-0', 'transform', '-translate-x-2', 'transition-all', 'duration-300');
+                        setTimeout(() => {
+                            const taskId = task.dataset.id;
+                            task.remove();
+                            removeTaskFromStorage(taskId);
+                            updateLineNumbers();
+                        }, 300);
+                    }
                 });
             });
             loadTasks();
