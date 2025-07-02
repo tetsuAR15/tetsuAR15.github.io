@@ -4,16 +4,23 @@ document.addEventListener('DOMContentLoaded', function() {
             const addTaskBtn = document.getElementById('addTask');
             const clearCompletedBtn = document.getElementById('clearCompleted');
 
+            // サンプルタスク（未定義対策）
+            const sampleTasks = [
+                'サンプルタスク1',
+                'サンプルタスク2'
+            ];
+
             // ローカルストレージからタスクを読み込む
             function loadTasks() {
                 const savedTasks = localStorage.getItem('devTodoTasks');
                 if (savedTasks) {
                     const tasks = JSON.parse(savedTasks);
                     tasks.forEach(task => {
-                        addTaskToDOM(task.text, task.completed, false, task.color);
+                        // idも渡す
+                        addTaskToDOM(task.text, task.completed, false, task.color, task.id);
                     });
                 } else {
-                    // ローカルストレージになければサンプルタスクを表示
+                    // サンプルタスクを表示
                     sampleTasks.forEach(task => {
                         addTaskToDOM(task, false, false);
                     });
@@ -21,8 +28,9 @@ document.addEventListener('DOMContentLoaded', function() {
             }
 
             // タスクをDOMに追加
-            function addTaskToDOM(taskText, isCompleted = false, saveToStorage = true, color = null) {
-                const taskId = Date.now() + Math.floor(Math.random()*1000); // 衝突防止
+            function addTaskToDOM(taskText, isCompleted = false, saveToStorage = true, color = null, id = null) {
+                // idが指定されていればそれを使う
+                const taskId = id || (Date.now() + Math.floor(Math.random()*1000));
                 const taskElement = document.createElement('div');
                 const taskColor = color || document.getElementById('taskColor')?.value || '#1e293b';
                 taskElement.className = `flex items-start py-2 px-3 rounded ${isCompleted ? 'bg-gray-800 text-gray-500' : ''}`;
@@ -135,7 +143,7 @@ document.addEventListener('DOMContentLoaded', function() {
             }
             addTaskBtn.addEventListener('click', function() {
                 const taskText = newTaskInput.value.trim();
-                const taskColor = document.getElementById('taskColor').value;
+                const taskColor = document.getElementById('taskColor')?.value || '#1e293b';
                 if (taskText) {
                     addTaskToDOM(taskText, false, true, taskColor);
                     newTaskInput.value = '';
