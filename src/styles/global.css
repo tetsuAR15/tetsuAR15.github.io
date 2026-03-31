@@ -1,0 +1,146 @@
+/* ── Reset ── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+/* ── Variables ── */
+:root {
+  --yellow:  #FFE135;
+  --pink:    #FF3CAC;
+  --cyan:    #00F5FF;
+  --orange:  #FF6B35;
+  --purple:  #9B5DE5;
+  --green:   #06FFA5;
+  --bg:      #0D0D0D;
+  --fg:      #F0F0F0;
+  --ff-disp: 'Bebas Neue', sans-serif;
+  --ff-body: 'Plus Jakarta Sans', sans-serif;
+  --ff-mono: 'Space Mono', monospace;
+}
+
+/* ── Base ── */
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--ff-body);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+::-webkit-scrollbar { width: 3px; }
+::-webkit-scrollbar-thumb { background: var(--yellow); }
+
+/* ── Keyframes ── */
+@keyframes fadeUp  { from { opacity: 0; transform: translateY(40px); } to { opacity: 1; transform: none; } }
+@keyframes fadeIn  { from { opacity: 0; } to { opacity: 1; } }
+@keyframes float   { 0%, 100% { transform: translateY(0); }    50% { transform: translateY(-18px); } }
+@keyframes spin    { to { transform: rotate(360deg); } }
+@keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+@keyframes blink   { 0%, 100% { opacity: 1; } 50% { opacity: .2; } }
+@keyframes wiggle  { 0%, 100% { transform: rotate(-4deg); } 50% { transform: rotate(4deg); } }
+
+/* ── Reveal ── */
+.reveal { opacity: 0; }
+.reveal.show { animation: fadeUp .65s cubic-bezier(.22, 1, .36, 1) forwards; }
+
+/* ── Buttons ── */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  font-family: var(--ff-mono);
+  font-size: .8rem;
+  font-weight: 700;
+  letter-spacing: .05em;
+  text-transform: uppercase;
+  padding: .9rem 2rem;
+  border: none;
+  cursor: pointer;
+  transition: transform .15s, box-shadow .2s;
+}
+.btn:hover { transform: translate(-3px, -3px); }
+
+.btn-yellow { background: var(--yellow); color: #0D0D0D; box-shadow: 4px 4px 0 #fff; }
+.btn-yellow:hover { box-shadow: 7px 7px 0 #fff; }
+
+.btn-outline {
+  background: transparent;
+  color: var(--fg);
+  border: 2px solid var(--fg);
+  box-shadow: 4px 4px 0 var(--yellow);
+}
+.btn-outline:hover { box-shadow: 7px 7px 0 var(--yellow); }
+
+/* ── Service Card ── */
+.scard {
+  position: relative;
+  padding: 2.5rem;
+  border: 2px solid;
+  overflow: hidden;
+  background: #111;
+  transition: transform .25s, box-shadow .25s;
+  cursor: default;
+}
+.scard:hover { transform: translate(-5px, -5px); }
+
+/* ── Pill tag ── */
+.pill {
+  display: inline-block;
+  font-family: var(--ff-mono);
+  font-size: .64rem;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  padding: .28rem .75rem;
+  border: 1.5px solid;
+  border-radius: 999px;
+}
+
+/* ── Marquee ── */
+.marquee-wrap {
+  overflow: hidden;
+  border-top: 2px solid rgba(255,255,255,.08);
+  border-bottom: 2px solid rgba(255,255,255,.08);
+}
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marquee 22s linear infinite;
+}
+.marquee-track:hover { animation-play-state: paused; }
+
+/* ── Form inputs ── */
+.field-input {
+  width: 100%;
+  background: rgba(255,255,255,.04);
+  border: 2px solid rgba(255,255,255,.1);
+  outline: none;
+  color: var(--fg);
+  font-family: var(--ff-body);
+  font-size: .95rem;
+  padding: .85rem 1rem;
+  transition: border-color .2s;
+  resize: vertical;
+}
+.field-input:focus { border-color: var(--yellow); }
+.field-input::placeholder { color: rgba(240,240,240,.3); }
+
+/* ── Section label ── */
+.section-label {
+  display: flex;
+  align-items: center;
+  gap: .75rem;
+  font-family: var(--ff-mono);
+  font-size: .72rem;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  color: var(--yellow);
+  margin-bottom: 1rem;
+}
+.section-label::before {
+  content: '';
+  display: block;
+  width: 2rem;
+  height: 2px;
+  background: var(--yellow);
+  flex-shrink: 0;
+}
