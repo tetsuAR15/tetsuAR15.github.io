@@ -11,11 +11,11 @@ export default function Footer() {
       }}
     >
       <div style={{ fontFamily: 'var(--ff-disp)', fontSize: '1.5rem', letterSpacing: '.05em' }}>
-        VOLT<span style={{ color: 'var(--yellow)' }}>LAB</span>
+        GaiZ<span style={{ color: 'var(--yellow)' }}>Go</span>
       </div>
 
       <div style={{ fontFamily: 'var(--ff-mono)', fontSize: '.7rem', letterSpacing: '.1em', textTransform: 'uppercase', color: 'rgba(240,240,240,.28)' }}>
-        © 2024 VoltLab Inc. — Tokyo, Japan
+        © 2026 GaiZ Go — Tokyo, Japan
       </div>
 
       <div style={{ display: 'flex', gap: '.5rem' }}>

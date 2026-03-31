@@ -25,7 +25,7 @@ export default function Nav() {
       }}
     >
       <div style={{ fontFamily: 'var(--ff-disp)', fontSize: '1.9rem', letterSpacing: '.05em', lineHeight: 1 }}>
-        VOLT<span style={{ color: 'var(--yellow)' }}>LAB</span>
+        GaiZ<span style={{ color: 'var(--yellow)' }}>Go</span>
       </div>
 
       <div style={{ display: 'flex', gap: '1rem', alignItems: 'center' }}>
